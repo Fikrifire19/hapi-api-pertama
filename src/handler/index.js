@@ -1,3 +1,3 @@
-const { postRegisterHandler } = require('./v1/registerHandler');
+const { postUserHandler } = require('./v1/userHandler');
 
-module.exports = { postRegisterHandler };
+module.exports = { postUserHandler };

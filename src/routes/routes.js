@@ -1,7 +1,7 @@
-const { postRegister } = require('./v1/registerRoutes');
+const { postUser } = require('./v1/userRoutes');
 
 const routes = [
-  postRegister,
+  postUser,
 ];
 
 module.exports = routes;
