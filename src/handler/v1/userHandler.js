@@ -15,24 +15,25 @@ const postUserHandler = async (request, h) => {
   const postedUser = await db('users').where('id', postUser).first();
   console.log(postedUser);
 
-  const isSuccess = postedUser.filter((user) => user.id === postedUser.id).length > 0;
+  // const isSuccess = postedUser.filter((user) => user.id === postedUser.id).length > 0;
 
-  if (isSuccess) {
-    const response = h.response({
-      status: 'success',
-      message: 'Register User Successfully!',
-      data: postedUser,
-    });
-    response.code(201);
-    return response;
-  }
+  // if (isSuccess) {
+  // }
 
   const response = h.response({
-    status: 'fail',
-    message: 'Register User Failed!',
+    status: 'success',
+    message: 'Register User Successfully!',
+    data: postedUser,
   });
-  response.code(500);
+  response.code(201);
   return response;
+
+  // const response = h.response({
+  //   status: 'fail',
+  //   message: 'Register User Failed!',
+  // });
+  // response.code(500);
+  // return response;
 };
 
 module.exports = { postUserHandler };
