@@ -77,4 +77,31 @@ const getUserByIdHandler = async (request, h) => {
   return response;
 };
 
-module.exports = { postUserHandler, getAllUsersHandler, getUserByIdHandler };
+const putUserHandler = async (request, h) => {
+  const { id } = request.params;
+
+  const { email, password } = request.payload;
+
+  const salt = bycrypt.genSaltSync(10);
+  const passwordHash = bycrypt.hashSync(password, salt);
+
+  const updateUser = await db('users')
+  .where({ id })
+  .update({
+    email,
+    password: passwordHash,
+  });
+
+  const updatedUser = await db('users')
+  .where({ id }).first();
+
+  const response = h.response({
+    status: 'success',
+    message: 'Update User Successfully',
+    data: updatedUser,
+  });
+  response.code(201);
+  return response;
+}
+
+module.exports = { postUserHandler, getAllUsersHandler, getUserByIdHandler, putUserHandler };
