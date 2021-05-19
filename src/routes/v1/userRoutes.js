@@ -1,4 +1,4 @@
-const { postUserHandler } = require('../../handler');
+const { postUserHandler, getAllUsersHandler } = require('../../handler');
 
 const postUser = {
   method: 'POST',
@@ -6,4 +6,10 @@ const postUser = {
   handler: postUserHandler,
 };
 
-module.exports = { postUser };
+const getAllUsers = {
+  method: 'GET',
+  path: '/v1/users/',
+  handler: getAllUsersHandler,
+};
+
+module.exports = { postUser, getAllUsers };

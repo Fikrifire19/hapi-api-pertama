@@ -36,4 +36,16 @@ const postUserHandler = async (request, h) => {
   // return response;
 };
 
-module.exports = { postUserHandler };
+const getAllUsersHandler = async (request, h) => {
+  const users = await db('users');
+
+  const response = h.response({
+    status: 'success',
+    message: 'Get Users Successfully!',
+    data: users,
+  });
+  response.code(200);
+  return response;
+};
+
+module.exports = { postUserHandler, getAllUsersHandler };

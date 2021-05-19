@@ -1,7 +1,7 @@
-const { postUser } = require('./v1/userRoutes');
+const { postUser, getAllUsers } = require('./v1/userRoutes');
 
 const routes = [
-  postUser,
+  postUser, getAllUsers
 ];
 
 module.exports = routes;
