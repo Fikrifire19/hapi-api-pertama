@@ -104,4 +104,17 @@ const putUserHandler = async (request, h) => {
   return response;
 }
 
-module.exports = { postUserHandler, getAllUsersHandler, getUserByIdHandler, putUserHandler };
+const deleteUserHandler = async (request, h) => {
+  const { id } = request.params;
+
+  const deleteUser = await db('users').where({ id }).del();
+
+  const response = h.response({
+    status: 'success',
+    message: `Delete User ${ id } Successfully!`,
+  });
+  response.code(200);
+  return response;
+};
+
+module.exports = { postUserHandler, getAllUsersHandler, getUserByIdHandler, putUserHandler, deleteUserHandler };
