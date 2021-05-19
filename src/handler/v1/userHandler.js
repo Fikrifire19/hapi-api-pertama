@@ -13,7 +13,7 @@ const postUserHandler = async (request, h) => {
   });
 
   const postedUser = await db('users').where('id', postUser).first();
-  console.log(postedUser);
+  // console.log(postedUser);
 
   // const isSuccess = postedUser.filter((user) => user.id === postedUser.id).length > 0;
 
@@ -48,4 +48,33 @@ const getAllUsersHandler = async (request, h) => {
   return response;
 };
 
-module.exports = { postUserHandler, getAllUsersHandler };
+const getUserByIdHandler = async (request, h) => {
+  const { id } = request.params;
+
+  const getUserById = await db('users').where({ id }).first();
+  console.log(getUserById);
+
+  // const filterUser = Object.entries(getUserById);
+  // console.log(filterUser);
+  // const user = filterUser.filter(([key, value]) => value === id);
+  // console.log(user);
+
+  if (getUserById !== undefined) {
+    const response = h.response({
+      status: 'success',
+      message: 'Get User By Id Successfully!',
+      data: getUserById,
+    });
+    response.code(200);
+    return response;
+  }
+
+  const response = h.response({
+    status: 'fail',
+    message: 'Get User By Id Failed!',
+  });
+  response.code(404);
+  return response;
+};
+
+module.exports = { postUserHandler, getAllUsersHandler, getUserByIdHandler };

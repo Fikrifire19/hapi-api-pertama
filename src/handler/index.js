@@ -1,3 +1,3 @@
-const { postUserHandler, getAllUsersHandler } = require('./v1/userHandler');
+const { postUserHandler, getAllUsersHandler, getUserByIdHandler } = require('./v1/userHandler');
 
-module.exports = { postUserHandler, getAllUsersHandler };
+module.exports = { postUserHandler, getAllUsersHandler, getUserByIdHandler };
