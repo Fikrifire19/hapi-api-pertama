@@ -1,4 +1,6 @@
-const { postUserHandler, getAllUsersHandler, getUserByIdHandler, putUserHandler, deleteUserHandler } = require('../../handler');
+const {
+  postUserHandler, getAllUsersHandler, getUserByIdHandler, putUserHandler, deleteUserHandler,
+} = require('../../handler/v1/userHandler');
 
 const postUser = {
   method: 'POST',
@@ -30,4 +32,6 @@ const deleteUser = {
   handler: deleteUserHandler,
 };
 
-module.exports = { postUser, getAllUsers, getUserById, putUser, deleteUser };
+module.exports = {
+  postUser, getAllUsers, getUserById, putUser, deleteUser,
+};

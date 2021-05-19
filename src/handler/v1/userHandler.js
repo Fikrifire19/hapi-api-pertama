@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 const bycrypt = require('bcryptjs');
+const authorization = require('../../middleware/authorization');
 const db = require('../../libs/db');
 
 const postUserHandler = async (request, h) => {
@@ -37,6 +39,8 @@ const postUserHandler = async (request, h) => {
 };
 
 const getAllUsersHandler = async (request, h) => {
+  const auth = await authorization(request, h);
+
   const users = await db('users');
 
   const response = h.response({
@@ -86,14 +90,14 @@ const putUserHandler = async (request, h) => {
   const passwordHash = bycrypt.hashSync(password, salt);
 
   const updateUser = await db('users')
-  .where({ id })
-  .update({
-    email,
-    password: passwordHash,
-  });
+    .where({ id })
+    .update({
+      email,
+      password: passwordHash,
+    });
 
   const updatedUser = await db('users')
-  .where({ id }).first();
+    .where({ id }).first();
 
   const response = h.response({
     status: 'success',
@@ -102,7 +106,7 @@ const putUserHandler = async (request, h) => {
   });
   response.code(201);
   return response;
-}
+};
 
 const deleteUserHandler = async (request, h) => {
   const { id } = request.params;
@@ -111,10 +115,12 @@ const deleteUserHandler = async (request, h) => {
 
   const response = h.response({
     status: 'success',
-    message: `Delete User ${ id } Successfully!`,
+    message: `Delete User ${id} Successfully!`,
   });
   response.code(200);
   return response;
 };
 
-module.exports = { postUserHandler, getAllUsersHandler, getUserByIdHandler, putUserHandler, deleteUserHandler };
+module.exports = {
+  postUserHandler, getAllUsersHandler, getUserByIdHandler, putUserHandler, deleteUserHandler,
+};
