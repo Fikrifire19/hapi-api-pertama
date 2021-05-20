@@ -4,6 +4,8 @@ const {
 
 const userLogin = require('./v1/loginRoute');
 
+const postProduct = require('./v1/productRoutes');
+
 const routes = [
   postUser,
   getAllUsers,
@@ -11,6 +13,7 @@ const routes = [
   putUser,
   deleteUser,
   userLogin,
+  postProduct,
 ];
 
 module.exports = routes;

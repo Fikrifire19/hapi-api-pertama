@@ -53,6 +53,8 @@ const getAllUsersHandler = async (request, h) => {
 };
 
 const getUserByIdHandler = async (request, h) => {
+  const auth = await Authorization(request, h);
+
   const { id } = request.params;
 
   const getUserById = await db('users').where({ id }).first();
@@ -82,6 +84,8 @@ const getUserByIdHandler = async (request, h) => {
 };
 
 const putUserHandler = async (request, h) => {
+  const auth = await Authorization(request, h);
+
   const { id } = request.params;
 
   const { email, password } = request.payload;
@@ -109,6 +113,8 @@ const putUserHandler = async (request, h) => {
 };
 
 const deleteUserHandler = async (request, h) => {
+  const auth = await Authorization(request, h);
+
   const { id } = request.params;
 
   const deleteUser = await db('users').where({ id }).del();
