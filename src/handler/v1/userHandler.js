@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const bycrypt = require('bcryptjs');
-const authorization = require('../../middleware/authorization');
+const Authorization = require('../../middleware/authorization');
 const db = require('../../libs/db');
 
 const postUserHandler = async (request, h) => {
@@ -39,7 +39,7 @@ const postUserHandler = async (request, h) => {
 };
 
 const getAllUsersHandler = async (request, h) => {
-  const auth = await authorization(request, h);
+  const auth = await Authorization(request, h);
 
   const users = await db('users');
 
